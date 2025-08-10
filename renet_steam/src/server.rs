@@ -37,6 +37,10 @@ pub struct SteamServerTransport {
     connections: HashMap<ClientId, NetConnection>,
 }
 
+// TODO: Make safe
+unsafe impl Send for SteamServerTransport {}
+unsafe impl Sync for SteamServerTransport {}
+
 impl SteamServerTransport {
     pub fn new(client: &Client, config: SteamServerConfig) -> Result<Self, InvalidHandle> {
         let options: Vec<NetworkingConfigEntry> = Vec::new();
